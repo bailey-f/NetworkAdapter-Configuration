@@ -1,4 +1,4 @@
 # NetworkAdapter-Configuration
 
 Written in Python.
-Designed and created entirely by Bailey Findlay.
+Created entirely by Bailey Findlay.

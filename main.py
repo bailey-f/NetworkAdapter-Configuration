@@ -19,7 +19,7 @@ class Application():
             self.ui.addAdapter(adapter)
 
     def _savePreset(self):
-        self.currentAdapter.presetname=self.currentPresetName
+        self.currentPresetName = self.ui.configurationframe.presetname.get()
         self.ui.pop_message("File Saved", "File " + str(self.files.Data(self.currentAdapter
             ).createFile(self.currentAdapter, self.currentPresetName)) + " successfully created.")
     
@@ -32,7 +32,6 @@ class Application():
         self.ui.registerAdapter(adapter)
 
     def changeCurrentAdapter(self, adapter, presetname):
-        self.currentPresetName = presetname
         self.currentAdapter = adapter
 
 

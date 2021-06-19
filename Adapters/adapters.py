@@ -17,9 +17,9 @@ class Adapter():
         except:
             try: self.ip = adapter["ip"]
             except: self.ip = "none"
-        try: self.ipEnabled = adapter["IPEnabled"]
+        try: self.ipEnabled = adapter.IPEnabled
         except:
-            try: self.ipEnabled = adapter.ipEnabled
+            try: self.ipEnabled = adapter.["ipEnabled"]
             except: self.ipEnabled = "none"
         try: self.subnet = adapter.IPSubnet[0]
         except:
