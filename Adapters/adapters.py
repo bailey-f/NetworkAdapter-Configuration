@@ -10,25 +10,41 @@ nic_configs.reverse()
 class Adapter():
     def __init__(self, adapter):
         try: self.name = adapter.caption[10:]
-        except: self.name = "none"
-        try: self.name = adapter.caption[10:]
-        except: self.name = "none"
+        except: 
+            try: self.name = adapter["name"]
+            except: self.name = "none"
         try: self.ip = adapter.IPAddress[0]
-        except: self.ip = "none"
-        try: self.ipEnabled = adapter.IPEnabled
-        except: self.ipEnabled = "none"
+        except:
+            try: self.ip = adapter["ip"]
+            except: self.ip = "none"
+        try: self.ipEnabled = adapter["IPEnabled"]
+        except:
+            try: self.ipEnabled = adapter.ipEnabled
+            except: self.ipEnabled = "none"
         try: self.subnet = adapter.IPSubnet[0]
-        except: self.subnet = self.subnet = "none"
+        except:
+            try: self.subnet = adapter["subnet"]
+            except: self.subnet = self.subnet = "none"
         try: self.dnsPREF = adapter.DNSServerSearchOrder[0]
-        except: self.dnsPREF = "none"
+        except:
+            try: self.dnsPREF = adapter["dnsPREF"]
+            except: self.dnsPREF = "none"
         try: self.dnsALT = adapter.DNSServerSearchOrder[1]
-        except: self.dnsALT = "none"
+        except: 
+            try: self.dnsALT = adapter["dnsALT"]
+            except: self.dnsALT = "none"
         try: self.dhcpEnabled = adapter.DHCPEnabled
-        except: self.dhcpEnabled = "none"
+        except: 
+            try: self.dhcpEnabled = adapter["dhcpEnabled"]
+            except: self.dhcpEnabled = "none"
         try: self.defaultIPGateway = adapter.DefaultIPGateway[0]
-        except: self.defaultIPGateway = "none"
+        except:
+            try: self.defaultIPGateway = adapter["defaultIPGateway"]
+            except: self.defaultIPGateway = "none"
         try: self.presetname = adapter.presetname
-        except:self.presetname = "none"
+        except:
+            try: self.presetname = adapter["presetname"]
+            except:self.presetname = "none"
 
     def get_json(self):
         return json.dumps(self.__dict__)

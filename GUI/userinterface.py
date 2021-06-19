@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import *
+from tkinter import filedialog
 from pathlib import Path
 
 ### CSS for python? lol? -- steelblue2 for frame bg, steelblue2 for labels and gray91 for writing.
@@ -96,6 +97,7 @@ class Configuration(Frame):
         name.pack(side="top", padx=2, pady=2)
         nameE = Entry(configurationframe, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, textvariable=self.name, font=("roboto", 12))
         nameE.pack(side="top", padx=2, pady=2, fill="both")
+        nameE.config(state='disabled')
 
         ip = Label(configurationframe, anchor=CENTER, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, text="IP ADDRESS", font=("roboto", 12), fg="gray91")
         ip.pack(side="top", padx=2, pady=2)
@@ -143,6 +145,10 @@ class Configuration(Frame):
                 return True
         return False
 
+    def loadPreset(self):
+        filename=filedialog.askopenfile(mode="r")
+        return filename
+
     def loadInfo(self, adapter):
         self.name.set(adapter.name)
         self.ip.set(adapter.ip)
@@ -152,6 +158,7 @@ class Configuration(Frame):
         self.dnsALT.set(adapter.dnsALT)
         self.dhcpEnabled.set(adapter.dhcpEnabled)
         self.defaultIPGateway.set(adapter.defaultIPGateway)
+        self.presetname.set(adapter.presetname)
 
 
 class Presets(Frame):
@@ -182,11 +189,18 @@ class ChangeSave(Frame):
         self.save.configure(activebackground="lightgreen", highlightcolor="lightblue", background="steelblue2", font=("roboto", 12), borderwidth=0, command=lambda: self.onClick(adapter, adapterid))
         self.onHover(self.save)
 
-        self.apply = Button(changesaveframe)
-        self.apply.configure(text="APPLY PRESET", height=50, width=40)
-        self.apply.pack(side="right")
-        self.apply.configure(activebackground="lightgreen", highlightcolor="lightblue", background="steelblue2", font=("roboto", 12), borderwidth=0, command=lambda: self.onClick(adapter, adapterid))
-        self.onHover(self.apply)
+        self.load = Button(changesaveframe)
+        self.load.configure(text="LOAD PRESET", height=50, width=40)
+        self.load.pack(side="right")
+        self.load.configure(activebackground="lightgreen", highlightcolor="lightblue", background="steelblue2", font=("roboto", 12), borderwidth=0, command=lambda: self.onClick(adapter, adapterid))
+        self.onHover(self.load)
+
+        self.applypreset = Button(changesaveframe)
+        self.applypreset.configure(text="APPLY PRESET", height=50, width=40)
+        self.applypreset.pack(side="right")
+        self.applypreset.configure(activebackground="lightgreen", highlightcolor="lightblue", background="steelblue2", font=("roboto", 12), borderwidth=0, command=lambda: self.onClick(adapter, adapterid))
+        self.onHover(self.applypreset)
+
 
     def onHover(self, button):
         if(button['bg'] == "lightgreen"):
@@ -222,7 +236,9 @@ class ChangeSave(Frame):
         if(name == "SAVE PRESET"):
             self.save.configure(command=func)
         elif(name == "APPLY PRESET"):
-            self.apply.configure(command=func)
+            self.applypreset.configure(command=func)
+        elif(name == "LOAD PRESET"):
+            self.load.configure(command=func)
 
 
 class UserInterface(tk.Tk):
@@ -256,6 +272,9 @@ class UserInterface(tk.Tk):
     def addAdapter(self, adapter):
         self.adapterid += 1
         self.adapterframe.addAdapters(adapter, self.adapterid)
+    
+    def registerAdapter(self, adapter):
+        self.configurationframe.loadInfo(adapter)
     
     def add_button_command(self, name, func):
         self.changesave.setButton(name, func)

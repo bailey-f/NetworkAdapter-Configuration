@@ -8,6 +8,7 @@ class Application():
         self.currentAdapter = None
         self.currentPresetName = None
         self.ui.add_button_command("SAVE PRESET", self._savePreset)
+        self.ui.add_button_command("LOAD PRESET", self._loadPreset)
         self.files = files
         self._populateAdapters()
         self.ui.render()
@@ -22,6 +23,14 @@ class Application():
         self.ui.pop_message("File Saved", "File " + str(self.files.Data(self.currentAdapter
             ).createFile(self.currentAdapter, self.currentPresetName)) + " successfully created.")
     
+    def _loadPreset(self):
+        fn = self.ui.configurationframe.loadPreset()
+        data = self.files.Data(None).loadFile(fn)
+        self._registerAdapter(data)
+
+    def _registerAdapter(self, adapter):
+        self.ui.registerAdapter(adapter)
+
     def changeCurrentAdapter(self, adapter, presetname):
         self.currentPresetName = presetname
         self.currentAdapter = adapter

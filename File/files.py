@@ -1,5 +1,6 @@
 from Adapters import adapters as ad
 import os
+import json
 
 class Data():
     def __init__(self, adapter):
@@ -16,7 +17,7 @@ class Data():
         except:
             pass
 
-        self.file_path = self.path + "/" + adapter.name + " |||| " + str(presetname) + ".json"
+        self.file_path = self.path + "/" + adapter.name + " - " + str(presetname) + ".json"
         # count number of files already in directory and therefore new file name
         print("file " + str(self.file_path) + " made")
 
@@ -28,15 +29,15 @@ class Data():
         return str(self.file_path)
 
     def loadFile(self, file):
-        data_list = []
+        data = None
         for line in file:
-            normalline = (self.get_normal(line))
-            data_list.append(ad.Adapter(normalline))
+            line = json.loads(line)
+            data = (ad.Adapter(line))
         file.close()
-        return data_list
+        return data
 
     def get_normal(self, rdata):
         rdata = rdata[1:(len(rdata)-2)]
         rdata = rdata.strip()
-        bytesr = bytes.fromhex(rdata)
+        bytesr = (rdata)
         return bytesr
