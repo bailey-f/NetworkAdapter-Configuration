@@ -13,7 +13,7 @@ class Adapters(Frame):
         self.allbuttons = []
         self.highlighted_row = 0
 
-        adapterframe = Frame(self, bg="steelblue2", height=620, width=400, bd=4)
+        adapterframe = Frame(self, bg="steelblue2", height=620, width=530, bd=4)
         adapterframe.pack(side="left", padx=2, pady=2)
         adapterframe.pack_propagate(0)
 
@@ -86,57 +86,57 @@ class Configuration(Frame):
         self.defaultIPGateway = StringVar()
         self.presetname = StringVar()
 
-        configurationframe = Frame(self, bg="steelblue2", height=620, width=400, bd=4)
-        configurationframe.pack(side="left", padx=2, pady=2)
-        configurationframe.pack_propagate(0)
+        self.configurationframe = Frame(self, bg="steelblue2", height=620, width=530, bd=4)
+        self.configurationframe.pack(side="left", padx=2, pady=2)
+        self.configurationframe.pack_propagate(0)
 
-        head = Label(configurationframe, anchor=CENTER, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, text="CONFIGURATION", font=("roboto", 24), fg="gray91")
+        head = Label(self.configurationframe, anchor=CENTER, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, text="CONFIGURATION", font=("roboto", 24), fg="gray91")
         head.pack(side="top", padx=2, pady=2, fill="both")
 
-        name = Label(configurationframe, anchor=CENTER, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, text="NAME", font=("roboto", 12), fg="gray91")
+        name = Label(self.configurationframe, anchor=CENTER, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, text="NAME", font=("roboto", 12), fg="gray91")
         name.pack(side="top", padx=2, pady=2)
-        nameE = Entry(configurationframe, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, textvariable=self.name, font=("roboto", 12))
+        nameE = Entry(self.configurationframe, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, textvariable=self.name, font=("roboto", 12))
         nameE.pack(side="top", padx=2, pady=2, fill="both")
         nameE.config(state='disabled')
 
-        ip = Label(configurationframe, anchor=CENTER, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, text="IP ADDRESS", font=("roboto", 12), fg="gray91")
+        ip = Label(self.configurationframe, anchor=CENTER, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, text="IP ADDRESS", font=("roboto", 12), fg="gray91")
         ip.pack(side="top", padx=2, pady=2)
-        ipE = Entry(configurationframe, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, textvariable=self.ip, validate="key", validatecommand=(self.ipVal, '%P', '%S'), font=("roboto", 12))
+        ipE = Entry(self.configurationframe, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, textvariable=self.ip, validate="key", validatecommand=(self.ipVal, '%P', '%S'), font=("roboto", 12))
         ipE.pack(side="top", padx=2, pady=2)
 
-        ipEnabled = Label(configurationframe, anchor=CENTER, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, text="IP ENABLED?", font=("roboto", 12), fg="gray91")
+        ipEnabled = Label(self.configurationframe, anchor=CENTER, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, text="IP ENABLED?", font=("roboto", 12), fg="gray91")
         ipEnabled.pack(side="top", padx=2, pady=2)
-        ipEnabledE = Entry(configurationframe, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, textvariable=self.ipEnabled, font=("roboto", 12))
+        ipEnabledE = Entry(self.configurationframe, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, textvariable=self.ipEnabled, font=("roboto", 12))
         ipEnabledE.pack(side="top", padx=2, pady=2)
 
-        subnet = Label(configurationframe, anchor=CENTER, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, text="SUBNET", font=("roboto", 12), fg="gray91")
+        subnet = Label(self.configurationframe, anchor=CENTER, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, text="SUBNET", font=("roboto", 12), fg="gray91")
         subnet.pack(side="top", padx=2, pady=2)
-        subnet = Entry(configurationframe, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, textvariable=self.subnet, font=("roboto", 12))
+        subnet = Entry(self.configurationframe, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, textvariable=self.subnet, font=("roboto", 12))
         subnet.pack(side="top", padx=2, pady=2)
 
-        dnsPREF = Label(configurationframe, anchor=CENTER, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, text="DNS PREFERRED", font=("roboto", 12), fg="gray91")
+        dnsPREF = Label(self.configurationframe, anchor=CENTER, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, text="DNS PREFERRED", font=("roboto", 12), fg="gray91")
         dnsPREF.pack(side="top", padx=2, pady=2)
-        dnsPREFE = Entry(configurationframe, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, textvariable=self.dnsPREF, font=("roboto", 12))
+        dnsPREFE = Entry(self.configurationframe, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, textvariable=self.dnsPREF, font=("roboto", 12))
         dnsPREFE.pack(side="top", padx=2, pady=2)
 
-        dnsALT = Label(configurationframe, anchor=CENTER, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, text="DNS ALT", font=("roboto", 12), fg="gray91")
+        dnsALT = Label(self.configurationframe, anchor=CENTER, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, text="DNS ALT", font=("roboto", 12), fg="gray91")
         dnsALT.pack(side="top", padx=2, pady=2)
-        dnsALTE = Entry(configurationframe, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, textvariable=self.dnsALT, font=("roboto", 12))
+        dnsALTE = Entry(self.configurationframe, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, textvariable=self.dnsALT, font=("roboto", 12))
         dnsALTE.pack(side="top", padx=2, pady=2)
 
-        dhcpEnabled = Label(configurationframe, anchor=CENTER, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, text="DHCP ENABLED?", font=("roboto", 12), fg="gray91")
+        dhcpEnabled = Label(self.configurationframe, anchor=CENTER, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, text="DHCP ENABLED?", font=("roboto", 12), fg="gray91")
         dhcpEnabled.pack(side="top", padx=2, pady=2)
-        dhcpEnabledE = Entry(configurationframe, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, textvariable=self.dhcpEnabled, font=("roboto", 12))
+        dhcpEnabledE = Entry(self.configurationframe, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, textvariable=self.dhcpEnabled, font=("roboto", 12))
         dhcpEnabledE.pack(side="top", padx=2, pady=2)
 
-        defaultGateway = Label(configurationframe, anchor=CENTER, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, text="DEFAULT GATEWAY", font=("roboto", 12), fg="gray91")
+        defaultGateway = Label(self.configurationframe, anchor=CENTER, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, text="DEFAULT GATEWAY", font=("roboto", 12), fg="gray91")
         defaultGateway.pack(side="top", padx=2, pady=2)
-        defaultGatewayE = Entry(configurationframe,  bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, textvariable=self.defaultIPGateway, font=("roboto", 12))
+        defaultGatewayE = Entry(self.configurationframe,  bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, textvariable=self.defaultIPGateway, font=("roboto", 12))
         defaultGatewayE.pack(side="top", padx=2, pady=2)
         
-        preset = Label(configurationframe, anchor=CENTER, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, text="PRESET NAME", font=("roboto", 12), fg="gray91")
+        preset = Label(self.configurationframe, anchor=CENTER, bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, text="PRESET NAME", font=("roboto", 12), fg="gray91")
         preset.pack(side="top", padx=2, pady=2)
-        presetE = Entry(configurationframe,  bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, textvariable=self.presetname, font=("roboto", 12))
+        presetE = Entry(self.configurationframe,  bg="steelblue2", bd=2, justify=CENTER, relief=FLAT, textvariable=self.presetname, font=("roboto", 12))
         presetE.pack(side="top", padx=2, pady=2)
 
     def ipVal(self, P, S):
@@ -159,6 +159,7 @@ class Configuration(Frame):
         self.dhcpEnabled.set(adapter.dhcpEnabled)
         self.defaultIPGateway.set(adapter.defaultIPGateway)
         self.presetname.set(adapter.presetname)
+        self.configurationframe.update()
 
 
 class Presets(Frame):
@@ -265,16 +266,24 @@ class UserInterface(tk.Tk):
         self.configurationframe.pack(side="left",
                               padx=2, pady=2, expand=True)
         
-        self.presetframe=Presets(self)
-        self.presetframe.pack(side="left",
-                              padx=2, pady=2, expand=True)
+        #self.presetframe=Presets(self)
+        #self.presetframe.pack(side="left",
+        #                      padx=2, pady=2, expand=True)
 
     def addAdapter(self, adapter):
         self.adapterid += 1
         self.adapterframe.addAdapters(adapter, self.adapterid)
     
     def registerAdapter(self, adapter):
+        try:
+            for widget in self.adapterframe.adapterrows.winfo_children():
+                if widget.winfo_class() == "Button":
+                    if widget['text'] == str(adapter.name):
+                        widget.invoke()
+        except:
+            pass
         self.configurationframe.loadInfo(adapter)
+
     
     def add_button_command(self, name, func):
         self.changesave.setButton(name, func)

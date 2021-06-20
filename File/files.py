@@ -17,7 +17,7 @@ class Data():
         except:
             pass
 
-        self.file_path = self.path + "/" + adapter.name + " - " + str(presetname) + ".json"
+        self.file_path = self.path + "/" + adapter.name + "-" + str(presetname) + ".json"
         # count number of files already in directory and therefore new file name
         print("file " + str(self.file_path) + " made")
 
